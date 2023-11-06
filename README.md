@@ -25,3 +25,10 @@ For proper linting:
 2) Provide board number as a define, e.g. <code>"\_\_AVR_ATmega328P__"</code>, either in <code>.vscode</code> or as a define in C file.
 
 ### Mac
+
+Install packages using homebrew:
+1) <code>brew install avrdude</code>
+2) <code>brew tap osx-cross/avr</code>
+3) <code>brew install avr-gcc avr-binutils</code> 
+
+Linting gives a headache for now...

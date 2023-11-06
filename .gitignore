@@ -4,3 +4,6 @@ build/
 *.bin
 *.hex
 *.o
+*.map
+
+led
