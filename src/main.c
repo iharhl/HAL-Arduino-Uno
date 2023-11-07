@@ -1,14 +1,18 @@
 #include <avr/io.h>
 #include <util/delay.h>
-#include "led.h"
+#include "gpio.h"
+#include "types.h"
 
 int main(void)
 {
     // Configure pin 5 (LED) as output
-    DDRB |= (1 << DDB5);
+    configurePin(&DDRB, DDB5, OUTPUT);
 
     while(1)
     {
-        toggleLed(&PORTB, PORTB5);
+        digitalWrite(&PORTB, PORTB5, LOW);
+        _delay_ms(1000);
+        digitalWrite(&PORTB, PORTB5, HIGH);
+        _delay_ms(1000);
     }
 }
