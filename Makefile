@@ -5,7 +5,7 @@ CFLAGS = -Os -DF_CPU=16000000UL -mmcu=atmega328p
 BUILD_DIR = build
 SRC_DIR = src
 
-OBJS = $(BUILD_DIR)/gpio.o
+OBJS = $(BUILD_DIR)/gpio.o $(BUILD_DIR)/pwm.o
 
 LINKER_FLAGS = -Wl,-Map,$(BUILD_DIR)/main.map
 
@@ -15,6 +15,9 @@ all: build $(OBJS)
 
 $(BUILD_DIR)/gpio.o:
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/gpio.c -o $(BUILD_DIR)/gpio.o
+
+$(BUILD_DIR)/pwm.o:
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/pwm.c -o $(BUILD_DIR)/pwm.o
 
 flash:
 	avrdude -c arduino -p atmega328p -P COM3 -U flash:w:$(BUILD_DIR)/main.hex
