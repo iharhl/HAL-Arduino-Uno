@@ -4,10 +4,15 @@ CFLAGS = -Os -DF_CPU=16000000UL -mmcu=atmega328p
 
 BUILD_DIR = build
 SRC_DIR = src
-
 OBJS = $(BUILD_DIR)/gpio.o $(BUILD_DIR)/pwm.o
 
 LINKER_FLAGS = -Wl,-Map,$(BUILD_DIR)/main.map
+
+ifeq ($(shell uname -s),Darwin)
+	PORT = /dev/tty.usbmodem11201
+else
+	PORT = COM3
+endif
 
 all: build $(OBJS)
 	$(CC) $(CFLAGS) $(LINKER_FLAGS) $(SRC_DIR)/main.c -o $(BUILD_DIR)/main $(OBJS)
@@ -20,7 +25,7 @@ $(BUILD_DIR)/pwm.o:
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/pwm.c -o $(BUILD_DIR)/pwm.o
 
 flash:
-	avrdude -c arduino -p atmega328p -P COM3 -U flash:w:$(BUILD_DIR)/main.hex
+	avrdude -c arduino -p atmega328p -P $(PORT) -U flash:w:$(BUILD_DIR)/main.hex
 
 erase:
 	avrdude -c arduino -p atmega328p -P COM3 -e

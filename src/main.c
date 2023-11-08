@@ -11,6 +11,8 @@ int main(void)
 
     // Configure pin as PWM output
     DDRD |= (1<<PD6);
+    
+    initPWM();
 
     while(1)
     {
@@ -18,9 +20,10 @@ int main(void)
         // _delay_ms(1000);
         // digitalWrite(&PORTB, PORTB5, HIGH);
         // _delay_ms(1000);
+
         sendPWM(0.2f);
         _delay_ms(5);
-        sendPWM(0.8f);
+        sendPWM(0.5f);
         _delay_ms(5);
     }
 }
