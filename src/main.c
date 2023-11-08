@@ -9,8 +9,8 @@ int main(void)
     // Configure pin 5 (LED) as output
     // configurePin(&DDRB, DDB5, OUTPUT);
 
-    // Configure pin as PWM output
-    DDRD |= (1<<PD6);
+    // Configure pin 6 (PD6) as output
+    configurePin(6, OUTPUT);
     
     initPWM();
 
