@@ -5,7 +5,7 @@
 #include "types.h"
 
 // -> TODO
-void _configurePin(volatile uint8_t* data_direction_register, uint8_t pin, IO_config_t setting);
+void _configureRegister(volatile uint8_t* data_direction_register, uint8_t pin, IO_config_t setting);
 
 void configurePin(uint8_t pin, IO_config_t setting);
 void digitalWrite(volatile uint8_t* port, uint8_t pin, digital_write_t value);
