@@ -27,11 +27,8 @@ $(BUILD_DIR)/pwm.o:
 flash:
 	avrdude -c arduino -p atmega328p -P $(PORT) -U flash:w:$(BUILD_DIR)/main.hex
 
-erase:
-	avrdude -c arduino -p atmega328p -P COM3 -e
-
 size:
-	avr-size led
+	avr-size -C --mcu=atmega328p $(BUILD_DIR)/main
 
 cache-dump:
 	avr-objdump -h led
