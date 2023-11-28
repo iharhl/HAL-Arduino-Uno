@@ -1,17 +1,93 @@
 #include "pwm.h"
-#include <avr/io.h>
+#include <stdbool.h>
+#include <assert.h>
 
-void initPWM(void)
+static struct
 {
-    // Set duty cycle to 0
-    OCR0A = 0;
+    bool pin3;
+    bool pin5;
+    bool pin6;
+    bool pin9;
+    bool pin10;
+    bool pin11;
+} pwm_enabled;
 
-    // Set up registers
-    TCCR0A |= (1<<COM0A1) | (1<<WGM01) | (1<<WGM00); // non-Inverting fast PWM mode 3 using OCR A unit
-	TCCR0B |= (1<<CS00); // no-Prescalar
+void PWM_init(uint8_t pin)
+{
+    switch(pin)
+    {
+    case 3:
+        // assert(!pwm_enabled.pin3);
+        OCR2B = 0;
+        TCCR2A |= (1<<COM2B1) | (1<<WGM21) | (1<<WGM20); // non-Inverting fast PWM mode 3
+        TCCR2B |= (1<<CS20); // no prescalar
+        pwm_enabled.pin3 = true;
+        break;
+    case 5:
+        // assert(!pwm_enabled.pin5);
+        OCR0B = 0;
+        TCCR0A |= (1<<COM0B1) | (1<<WGM01) | (1<<WGM00);
+        TCCR0B |= (1<<CS00);
+        pwm_enabled.pin5 = true;
+        break;
+    case 6:
+        // assert(!pwm_enabled.pin6);
+        OCR0A = 0;
+        TCCR0A |= (1<<COM0A1) | (1<<WGM01) | (1<<WGM00);
+        TCCR0B |= (1<<CS00);
+        pwm_enabled.pin6 = true;
+        break;
+    case 9:
+        // assert(!pwm_enabled.pin9);
+        OCR1A = 0;
+        TCCR0A |= (1<<COM1A1) | (1<<WGM11) | (1<<WGM10);
+        TCCR0B |= (1<<CS10);
+        pwm_enabled.pin9 = true;
+        break;
+    case 10:
+        // assert(!pwm_enabled.pin10);
+        OCR1B = 0;
+        TCCR0A |= (1<<COM1B1) | (1<<WGM11) | (1<<WGM10);
+        TCCR0B |= (1<<CS10);
+        pwm_enabled.pin10 = true;
+        break;
+    case 11:
+        // assert(!pwm_enabled.pin11);
+        OCR2A = 0;
+        TCCR2A |= (1<<COM2A1) | (1<<WGM21) | (1<<WGM20);
+        TCCR2B |= (1<<CS20);
+        pwm_enabled.pin11 = true;
+        break;
+    }
 }
 
-void sendPWM(float duty_cycle)
+void PWM_send(uint8_t pin, uint8_t duty_cycle)
 {
-    OCR0A = (uint8_t)(255*duty_cycle); // convert 0-1 duty cycle range to register value
+    switch(pin)
+    {
+    case 3:
+        // assert(pwm_enabled.pin3);
+        OCR2B = duty_cycle; // 0 till 255
+        break;
+    case 5:
+        // assert(pwm_enabled.pin5);
+        OCR0B = duty_cycle; // 0 till 255
+        break;
+    case 6:
+        // assert(pwm_enabled.pin6);
+        OCR0A = duty_cycle; // 0 till 255
+        break;
+    case 9:
+        // assert(pwm_enabled.pin9);
+        OCR1A = duty_cycle; // 0 till 255
+        break;
+    case 10:
+        // assert(pwm_enabled.pin10);
+        OCR1B = duty_cycle; // 0 till 255
+        break;
+    case 11:
+        // assert(pwm_enabled.pin11);
+        OCR2A = duty_cycle; // 0 till 255
+        break;
+    }
 }

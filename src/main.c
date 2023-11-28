@@ -6,16 +6,15 @@
 
 int main(void)
 {
-    // Configure pin 5 (LED) as output
-    // configurePin(&DDRB, DDB5, OUTPUT);
-
     // Configure pin 6 (PD6) as output
     configurePin(6, OUTPUT);
+    configurePin(11, OUTPUT);
 
     // Test
-    configurePin(A0, OUTPUT);
+    // configurePin(A0, OUTPUT);
     
-    initPWM();
+    PWM_init(6);
+    PWM_init(11);
 
     while(1)
     {
@@ -23,10 +22,11 @@ int main(void)
         // _delay_ms(1000);
         // digitalWrite(&PORTB, PORTB5, HIGH);
         // _delay_ms(1000);
-
-        sendPWM(0.2f);
+        PWM_send(6, 128);
+        PWM_send(11, 128);
         _delay_ms(5);
-        sendPWM(0.5f);
+        PWM_send(6, 64);
+        PWM_send(11, 64);
         _delay_ms(5);
     }
 }
