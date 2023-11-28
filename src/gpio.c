@@ -1,8 +1,6 @@
 #include "gpio.h"
 
-// -> TODO
-//
-void _configureRegister(volatile uint8_t* data_direction_register, uint8_t bit, IO_config_t setting)
+static inline void _configureRegister(volatile uint8_t* data_direction_register, uint8_t bit, IO_config_t setting)
 {
     if (setting == INPUT)
     {
@@ -81,7 +79,6 @@ void configurePin(uint8_t pin, IO_config_t setting)
         // TODO
         break;
     }
-
 }
 
 void digitalWrite(volatile uint8_t* port, uint8_t pin, digital_write_t value)
