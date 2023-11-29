@@ -14,6 +14,8 @@ else
 	PORT = COM3
 endif
 
+complete: clean all flash
+
 all: build $(OBJS)
 	$(CC) $(CFLAGS) $(LINKER_FLAGS) $(SRC_DIR)/main.c -o $(BUILD_DIR)/main $(OBJS)
 	$(OBJCOPY) -O ihex -R .eeprom $(BUILD_DIR)/main $(BUILD_DIR)/main.hex
