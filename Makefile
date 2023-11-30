@@ -14,11 +14,10 @@ else
 	PORT = COM3
 endif
 
-complete: clean all flash
 
 all: build $(OBJS)
-	$(CC) $(CFLAGS) $(LINKER_FLAGS) $(SRC_DIR)/main.c -o $(BUILD_DIR)/main $(OBJS)
-	$(OBJCOPY) -O ihex -R .eeprom $(BUILD_DIR)/main $(BUILD_DIR)/main.hex
+	$(CC) $(CFLAGS) $(LINKER_FLAGS) $(SRC_DIR)/main.c -o $(BUILD_DIR)/main.elf $(OBJS)
+	$(OBJCOPY) -O ihex -R .eeprom $(BUILD_DIR)/main.elf $(BUILD_DIR)/main.hex
 
 $(BUILD_DIR)/gpio.o:
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/gpio.c -o $(BUILD_DIR)/gpio.o
@@ -30,7 +29,7 @@ flash:
 	avrdude -c arduino -p atmega328p -P $(PORT) -U flash:w:$(BUILD_DIR)/main.hex
 
 size:
-	avr-size -C --mcu=atmega328p $(BUILD_DIR)/main
+	avr-size -C --mcu=atmega328p $(BUILD_DIR)/main.elf
 
 cache-dump:
 	avr-objdump -h led
@@ -41,3 +40,5 @@ build:
 
 clean:
 	rm -rf build/*
+
+full: clean all flash
