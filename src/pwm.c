@@ -1,6 +1,7 @@
 #include "pwm.h"
 #include <stdbool.h>
-#include <assert.h>
+// #include <assert.h>
+#include "assert_handler.h"
 
 static struct
 {
@@ -24,7 +25,7 @@ void PWM_init(uint8_t pin)
     switch(pin)
     {
     case 3:
-        // assert(!pwm_enabled.pin_3);
+        ASSERT(!pwm_enabled.pin_3);
         OCR2B = 0;
         TCCR2A |= (1<<COM2B1) | (1<<WGM21) | (1<<WGM20); // non-Inverting fast PWM mode 3
         TCCR2B |= (1<<CS20); // no prescalar

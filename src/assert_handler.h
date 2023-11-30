@@ -8,8 +8,8 @@
         {                       \
             assert_handler();   \
         }                       \
-    } while(0)                  \
-
-#endif
+    } while(0)
 
 void assert_handler(void);
+
+#endif

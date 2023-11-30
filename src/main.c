@@ -9,10 +9,12 @@ int main(void)
     // Configure pin 6 (PD6) as output
     configurePin(9, OUTPUT);
     configurePin(10, OUTPUT);
+    configurePin(3, OUTPUT);
 
     // Test
     // configurePin(A0, OUTPUT);
-    
+    PWM_init(3);
+    PWM_init(3);
     PWM_16bit_init(9);
     PWM_16bit_init(10);
 
