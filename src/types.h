@@ -3,12 +3,6 @@
 
 typedef enum
 {
-    INPUT,
-    OUTPUT
-} IO_config_t;
-
-typedef enum
-{
     LOW,
     HIGH
 } digital_write_t;

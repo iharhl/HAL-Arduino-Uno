@@ -7,28 +7,26 @@
 int main(void)
 {
     // Configure pin 6 (PD6) as output
-    configurePin(9, OUTPUT);
-    configurePin(10, OUTPUT);
-    configurePin(3, OUTPUT);
+    // configurePin(9, OUTPUT);
+    // configurePin(10, OUTPUT);
+    // configurePin(3, OUTPUT);
+    io_set_direction(9, IO_DIR_OUTPUT);
+    io_set_direction(10, IO_DIR_OUTPUT);
+    io_set_direction(3, IO_DIR_OUTPUT);
 
-    // Test
-    // configurePin(A0, OUTPUT);
     PWM_init(3);
-    PWM_init(3);
-    PWM_16bit_init(9);
-    PWM_16bit_init(10);
 
     while(1)
     {
-        // digitalWrite(&PORTB, PORTB5, LOW);
-        // _delay_ms(1000);
-        // digitalWrite(&PORTB, PORTB5, HIGH);
-        // _delay_ms(1000);
-        PWM_16bit_send(9, 0xEFFF);
-        PWM_16bit_send(10, 0xEFFF);
+        PWM_send(3, 50);
+        io_set_drive(9, IO_HIGH);
+        // PWM_16bit_send(9, 0xEFFF);
+        // PWM_16bit_send(10, 0xEFFF);
         _delay_ms(5);
-        PWM_16bit_send(9, 0x000A);
-        PWM_16bit_send(10, 0x000A);
+        PWM_send(3, 200);
+        io_set_drive(9, IO_LOW);
+        // PWM_16bit_send(9, 0x000A);
+        // PWM_16bit_send(10, 0x000A);
         _delay_ms(5);
     }
 }

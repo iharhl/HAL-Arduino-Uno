@@ -5,16 +5,16 @@
 void blink_led(void)
 {
     // Setup on-board LED
-    configurePin(13, OUTPUT);
+    io_set_direction(13, IO_DIR_OUTPUT);
 
     // Infinitely blink
     while(1)
     {
         // TODO : fix write
-        digitalWrite(&PORTB, PORTB5, LOW);
-        _delay_ms(500);
-        digitalWrite(&PORTB, PORTB5, HIGH);
-        _delay_ms(500);
+        // digitalWrite(&PORTB, PORTB5, LOW);
+        // _delay_ms(500);
+        // digitalWrite(&PORTB, PORTB5, HIGH);
+        // _delay_ms(500);
     }
 }
 
