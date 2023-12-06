@@ -5,7 +5,7 @@
 void blink_led(void)
 {
     // Setup on-board LED
-    io_set_direction(13, IO_DIR_OUTPUT);
+    // io_set_direction(13, GPIO_DIR_OUTPUT);
 
     // Infinitely blink
     while(1)
