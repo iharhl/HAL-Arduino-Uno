@@ -10,7 +10,7 @@ int main(void)
     // configurePin(9, OUTPUT);
     // configurePin(10, OUTPUT);
     // configurePin(3, OUTPUT);
-
+    HAL_GPIO_Init();
     HAL_GPIO_ConfigurePin((GPIO_Config){GPIO_DIR_OUTPUT, GPIO_PULL_DOWN}, 13);
 
     // PWM_init(3);

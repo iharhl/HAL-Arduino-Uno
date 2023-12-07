@@ -3,7 +3,7 @@
 
 #define ASSERT(expression)      \
     do                          \
-    {                           \               
+    {                           \
         if (!(expression))      \
         {                       \
             assert_handler();   \
