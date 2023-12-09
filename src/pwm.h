@@ -1,7 +1,11 @@
 #ifndef _PWM_H
 #define _PWM_H
 
+#ifdef AVR_TEST
+#include "../tests/avr_io_mock.h"
+#else
 #include <avr/io.h>
+#endif
 
 /* 8-bit fast PWM */
 void PWM_send(uint8_t pin, uint8_t duty_cycle);

@@ -1,7 +1,12 @@
 #ifndef _GPIO_H_
 #define _GPIO_H_
 
+#ifdef AVR_TEST
+#include "../tests/avr_io_mock.h"
+#else
 #include <avr/io.h>
+#endif
+
 #include "types.h"
 
 #define PORT_NUM 3

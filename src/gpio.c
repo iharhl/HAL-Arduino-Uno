@@ -1,4 +1,5 @@
 #include "gpio.h"
+#include "assert_handler.h"
 
 /* ============== PRIVATE METHODS ================== */
 
@@ -12,7 +13,7 @@ static inline uint8_t get_port(GPIO_Pin_e pin)
     else if (pin >= 14 && pin < 20)
         return 2; //DDRC or PORTC
     else
-        ASSERT(false);
+        ASSERT(0);
 }
 
 // TODO: fix to not repeat above
@@ -25,7 +26,7 @@ static inline uint8_t get_pin_bit(GPIO_Pin_e pin)
     else if (pin >= 14 && pin < 20)
         return pin-14;
     else
-        ASSERT(false);
+        ASSERT(0);
 }
 
 // Registers

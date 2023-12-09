@@ -1,6 +1,9 @@
 #include "assert_handler.h"
 #include "gpio.h"
+
+#ifndef AVR_TEST
 #include <util/delay.h>
+#endif
 
 void blink_led(void)
 {
