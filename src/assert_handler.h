@@ -3,11 +3,13 @@
 
 #ifdef AVR_TEST
 #include <stdlib.h>
+#include "trace.h"
 #define ASSERT(expression)      \
     do                          \
     {                           \
         if (!(expression))      \
         {                       \
+            TRACE("ERROR");     \
             exit(1);            \
         }                       \
     } while(0)

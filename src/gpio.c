@@ -1,5 +1,6 @@
 #include "gpio.h"
 #include "assert_handler.h"
+#include <stdio.h> // remove
 
 /* ============== PRIVATE METHODS ================== */
 
@@ -10,7 +11,7 @@ static inline uint8_t get_port(GPIO_Pin_e pin)
         return 0; // DDRD or PORTD
     else if (pin >= 8 && pin < 14)
         return 1; // DDRB or PORTB
-    else if (pin >= 14 && pin < 20)
+    else if (pin >= 14 && pin < 21)
         return 2; //DDRC or PORTC
     else
         ASSERT(0);
@@ -23,7 +24,7 @@ static inline uint8_t get_pin_bit(GPIO_Pin_e pin)
         return pin;
     else if (pin >= 8 && pin < 14)
         return pin-8;
-    else if (pin >= 14 && pin < 20)
+    else if (pin >= 14 && pin < 21)
         return pin-14;
     else
         ASSERT(0);
@@ -48,7 +49,8 @@ void HAL_GPIO_Init(void)
         const uint8_t port = get_port(i);
         const uint8_t pin_bit = get_pin_bit(i);
         *port_dir_regs[port] &= ~(1 << pin_bit);
-        *port_pull_regs[port] |= (1 << pin_bit); 
+        *port_pull_regs[port] |= (1 << pin_bit);
+
     }
 }
 

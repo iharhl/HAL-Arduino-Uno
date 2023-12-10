@@ -8,7 +8,11 @@ C_TEST_FLAGS = -g -Wall -Wextra -Wconversion -DAVR_TEST
 BUILD_DIR = build
 SRC_DIR = src
 OBJS = $(BUILD_DIR)/gpio.o $(BUILD_DIR)/pwm.o $(BUILD_DIR)/assert_handler.o
-TEST_OBJS = $(BUILD_DIR)/test_gpio.o $(BUILD_DIR)/test_pwm.o $(BUILD_DIR)/test_assert_handler.o $(BUILD_DIR)/avr_io_mock.o
+TEST_OBJS = $(BUILD_DIR)/test_gpio.o \
+			$(BUILD_DIR)/test_pwm.o \
+			$(BUILD_DIR)/test_assert_handler.o \
+			$(BUILD_DIR)/test_trace.o \
+			$(BUILD_DIR)/avr_io_mock.o
 
 LINKER_FLAGS = -Wl,-Map,$(BUILD_DIR)/main.map
 
@@ -36,6 +40,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c build
 $(BUILD_DIR)/test_%.o: $(SRC_DIR)/%.c build
 	$(CC_TEST) $(C_TEST_FLAGS) -c $< -o $@
 
+# TODO: ...
 $(BUILD_DIR)/avr_io_mock.o: tests/avr_io_mock.c build
 	$(CC_TEST) $(C_TEST_FLAGS) -c $< -o $@
 
