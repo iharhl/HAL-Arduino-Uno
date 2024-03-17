@@ -1,22 +1,17 @@
-#ifndef _PWM_H
-#define _PWM_H
+#ifndef PWM_H_
+#define PWM_H_
 
+#include <stdbool.h>
 #ifdef AVR_TEST
 #include "../tests/avr_io_mock.h"
 #else
 #include <avr/io.h>
 #endif
 
-/* 8-bit fast PWM */
-void PWM_send(uint8_t pin, uint8_t duty_cycle);
-
-/* 16-bit fast PWM */
-void PWM_16bit_send(uint8_t pin, uint16_t duty_cycle);
-
-/* Initialization of 8-bit PWM */
-void PWM_init(uint8_t pin);
-
-/* Initialization of 16-bit PWM */
-void PWM_16bit_init(uint8_t pin);
+void HAL_PWM_Init(void); // resets all PWM registers
+void HAL_PWM_Write(uint8_t Pin, uint8_t DutyCycle); // set PWM value (add more inputs?)
+void HAL_PWM_Write16(uint8_t Pin, uint16_t DutyCycle);
+void HAL_PWM_ConfigurePin(const uint8_t Pin, const bool PWM16);
+// int16_t HAL_PWM_ReadPin(uint8_t Pin);
 
 #endif

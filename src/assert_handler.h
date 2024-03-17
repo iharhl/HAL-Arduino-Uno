@@ -1,6 +1,8 @@
 #ifndef ASSERT_HANDLER_H_
 #define ASSERT_HANDLER_H_
 
+#include <stdio.h>
+
 #ifdef AVR_TEST
 #include <stdlib.h>
 #include "trace.h"
@@ -10,7 +12,6 @@
         if (!(expression))      \
         {                       \
             TRACE("ERROR");     \
-            exit(1);            \
         }                       \
     } while(0)
 #else
@@ -25,6 +26,6 @@
 #endif
 
 // TODO
-void assert_handler(void);
+void assert_handler(void) __attribute__((noreturn));
 
 #endif

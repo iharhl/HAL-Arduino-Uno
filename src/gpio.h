@@ -1,5 +1,5 @@
-#ifndef _GPIO_H_
-#define _GPIO_H_
+#ifndef GPIO_H_
+#define GPIO_H_
 
 #ifdef AVR_TEST
 #include "../tests/avr_io_mock.h"
@@ -48,5 +48,6 @@ void HAL_GPIO_Init(void);
 void HAL_GPIO_ConfigurePin(GPIO_Config Config, uint8_t Pin);
 void HAL_GPIO_WritePin(uint8_t Pin, GPIO_State_e State);
 void HAL_GPIO_TogglePin(uint8_t Pin);
+GPIO_State_e HAL_GPIO_ReadPin(uint8_t Pin);
 
 #endif
