@@ -34,6 +34,11 @@ extern volatile uint8_t TCCR2B;
 // Input Capture Register (16-bit) 
 extern volatile uint16_t ICR1;
 
+// SPI Registers
+extern volatile uint8_t SPCR; // SPI Control Register
+extern volatile uint8_t SPSR; // SPI Status Register
+extern volatile uint8_t SPDR; // SPI Data Register
+
 /* ****** Registers' bits ********** */
 
 // Bits No. of TCCR0A register
@@ -81,5 +86,19 @@ extern volatile uint8_t CS22;
 extern volatile uint8_t CS21;
 extern volatile uint8_t CS20;
 
+// Bits No. of SPCR
+extern volatile uint8_t SPIE;
+extern volatile uint8_t SPE;
+extern volatile uint8_t DORD;
+extern volatile uint8_t MSTR;
+extern volatile uint8_t CPOL;
+extern volatile uint8_t CPHA;
+extern volatile uint8_t SPR1;
+extern volatile uint8_t SPR0;
+
+// Bits No. of SPSR
+extern volatile uint8_t SPIF;
+extern volatile uint8_t WCOL;
+extern volatile uint8_t SPI2X;
 
 #endif

@@ -31,6 +31,11 @@ volatile uint8_t TCCR2B = 0;
 // Input Capture Register (16-bit) 
 volatile uint16_t ICR1 = 0;
 
+// SPI Registers
+volatile uint8_t SPCR = 0; // SPI Control Register
+volatile uint8_t SPSR = 0; // SPI Status Register
+volatile uint8_t SPDR = 0; // SPI Data Register
+
 /* ****** Registers' bits ********** */
 
 // Bits No. of TCCR0A register
@@ -77,3 +82,18 @@ volatile uint8_t WGM22 = 3;
 volatile uint8_t CS22 = 2;
 volatile uint8_t CS21 = 1;
 volatile uint8_t CS20 = 0;
+
+// Bits No. of SPCR
+volatile uint8_t SPIE = 7;
+volatile uint8_t SPE = 6;
+volatile uint8_t DORD = 5;
+volatile uint8_t MSTR = 4;
+volatile uint8_t CPOL = 3;
+volatile uint8_t CPHA = 2;
+volatile uint8_t SPR1 = 1;
+volatile uint8_t SPR0 = 0;
+
+// Bits No. of SPSR
+volatile uint8_t SPIF = 7;
+volatile uint8_t WCOL = 6;
+volatile uint8_t SPI2X = 0;

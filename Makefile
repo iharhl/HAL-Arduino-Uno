@@ -11,12 +11,12 @@ OBJS = $(BUILD_DIR)/gpio.o \
 	$(BUILD_DIR)/pwm.o \
 	$(BUILD_DIR)/assert_handler.o \
 	$(BUILD_DIR)/spi.o
-TEST_OBJS = $(BUILD_DIR)/test_gpio.o \
+TEST_OBJS = $(BUILD_DIR)/avr_io_mock.o \
+			$(BUILD_DIR)/test_gpio.o \
 			$(BUILD_DIR)/test_pwm.o \
 			$(BUILD_DIR)/test_assert_handler.o \
 			$(BUILD_DIR)/test_trace.o \
-			$(BUILD_DIR)/avr_io_mock.o
-
+			$(BUILD_DIR)/test_spi.o
 LINKER_FLAGS = -Wl,-Map,$(BUILD_DIR)/main.map
 
 ifeq ($(shell uname -s),Darwin)

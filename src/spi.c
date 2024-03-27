@@ -9,13 +9,14 @@ void HAL_SPI_MasterInit(void)
     SPCR |= (1<<SPE) | (1<<MSTR);
 }
 
-void HAL_SPI_MasterTx(char Data)
+void HAL_SPI_MasterTx(const char Data)
 {
     // TODO: assert pin config
     /* Start transmission */
     SPDR = Data;
     /* Wait for transmission complete */
-    while(!(SPSR & (1<<SPIF)));
+    while(!(SPSR & (1<<SPIF)))
+        ;
 }
 
 void HAL_SPI_SlaveInit(void)
@@ -28,7 +29,8 @@ void HAL_SPI_SlaveInit(void)
 char HAL_SPI_SlaveRx(void)
 {
     /* Wait for reception complete */
-    while(!(SPSR & (1<<SPIF)));
+    while(!(SPSR & (1<<SPIF)))
+        ;
     /* Return Data Register */
     return SPDR;
 }

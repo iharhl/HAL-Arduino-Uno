@@ -22,11 +22,11 @@ static inline uint8_t get_port(const GPIO_Pin_e pin)
 static inline uint8_t get_pin_bit(const GPIO_Pin_e pin)
 {
     if (pin < 8)
-        return pin;
+        return (uint8_t)pin;
     else if (pin >= 8 && pin < 14)
-        return pin-8;
+        return (uint8_t)(pin-8);
     else if (pin >= 14 && pin < 21)
-        return pin-14;
+        return (uint8_t)(pin-14);
     ASSERT(0);
 }
 
@@ -45,7 +45,7 @@ static volatile uint8_t* const port_pull_regs[PORT_NUM] =
 */
 void HAL_GPIO_Init(void)
 {
-    for (int i = PIN_0; i <= PIN_A5; i++)
+    for (GPIO_Pin_e i = PIN_0; i <= PIN_A5; i++)
     {
         const uint8_t port = get_port(i);
         const uint8_t pin_bit = get_pin_bit(i);
