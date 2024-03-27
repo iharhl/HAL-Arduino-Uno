@@ -81,7 +81,6 @@ void HAL_PWM_Init(void)
     OCR1B = 0;
     OCR2A = 0;
     OCR2B = 0;
-
     // Clean timer/counter control registers (pwm mode)
     TCCR0A = 0;
     TCCR0B = 0;
@@ -89,10 +88,8 @@ void HAL_PWM_Init(void)
     TCCR1B = 0;
     TCCR2A = 0;
     TCCR2B = 0;
-
     // Clean ICR1 -> for 16-bit implementation
     ICR1 = 0;
-
     // Reset the pwm pins status
     for (uint8_t i = 0; i < PWM_REG_NUM; i++) {
         pwm_enabled[i] = false;

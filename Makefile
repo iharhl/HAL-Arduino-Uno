@@ -7,7 +7,10 @@ C_TEST_FLAGS = -g -Wall -Wextra -Wconversion -DAVR_TEST
 
 BUILD_DIR = build
 SRC_DIR = src
-OBJS = $(BUILD_DIR)/gpio.o $(BUILD_DIR)/pwm.o $(BUILD_DIR)/assert_handler.o
+OBJS = $(BUILD_DIR)/gpio.o \
+	$(BUILD_DIR)/pwm.o \
+	$(BUILD_DIR)/assert_handler.o \
+	$(BUILD_DIR)/spi.o
 TEST_OBJS = $(BUILD_DIR)/test_gpio.o \
 			$(BUILD_DIR)/test_pwm.o \
 			$(BUILD_DIR)/test_assert_handler.o \
@@ -51,8 +54,8 @@ size:
 	avr-size -C --mcu=atmega328p $(BUILD_DIR)/main.elf
 
 cache-dump:
-	avr-objdump -h led
-	avr-objdump -S led
+	avr-objdump -h build/main.elf
+	avr-objdump -S build/main.elf
 
 build:
 	mkdir -p build
