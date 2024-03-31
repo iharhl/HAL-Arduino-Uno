@@ -1,7 +1,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "gpio.h"
-#include "types.h"
 #include "pwm.h"
 
 int main(void)

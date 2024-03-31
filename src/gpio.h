@@ -7,8 +7,6 @@
 #include <avr/io.h>
 #endif
 
-#include "types.h"
-
 #define PORT_NUM 3
 
 typedef enum
