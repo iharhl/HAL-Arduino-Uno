@@ -67,8 +67,8 @@ int HAL_ADC_ReadPin(GPIO_Pin_e Pin)
         ;
 
     // Read low and high ADC byte
-    uint8_t adc_rx_byte_l = ADCL;
-    uint8_t adc_rx_byte_h = ADCH;
+    const uint8_t adc_rx_byte_l = ADCL;
+    const uint8_t adc_rx_byte_h = ADCH;
 
     return (int)(adc_rx_byte_l + adc_rx_byte_h * (1<<8));
 }

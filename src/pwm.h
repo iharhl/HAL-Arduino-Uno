@@ -2,7 +2,7 @@
 #define PWM_H_
 
 #include <stdbool.h>
-#ifdef AVR_TEST
+#ifdef DEBUG_SIM
 #include "../tests/avr_io_mock.h"
 #else
 #include <avr/io.h>

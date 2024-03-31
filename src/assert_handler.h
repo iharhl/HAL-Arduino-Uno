@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#ifdef AVR_TEST
+#ifdef DEBUG_SIM
 #include <stdlib.h>
 #include "trace.h"
 #define ASSERT(expression)      \

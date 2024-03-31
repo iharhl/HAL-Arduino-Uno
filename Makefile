@@ -1,52 +1,67 @@
+# Flags
 CC = avr-gcc
 OBJCOPY = avr-objcopy
 CFLAGS = -Os -DF_CPU=16000000UL -mmcu=atmega328p
-
 CC_TEST = gcc
-C_TEST_FLAGS = -g -Wall -Wextra -Wconversion -DAVR_TEST
-
-BUILD_DIR = build
-SRC_DIR = src
-OBJS = $(BUILD_DIR)/gpio.o \
-	$(BUILD_DIR)/pwm.o \
-	$(BUILD_DIR)/assert_handler.o \
-	$(BUILD_DIR)/spi.o \
-	$(BUILD_DIR)/adc.o
-TEST_OBJS = $(BUILD_DIR)/avr_io_mock.o \
-			$(BUILD_DIR)/test_gpio.o \
-			$(BUILD_DIR)/test_pwm.o \
-			$(BUILD_DIR)/test_assert_handler.o \
-			$(BUILD_DIR)/test_trace.o \
-			$(BUILD_DIR)/test_spi.o \
-			$(BUILD_DIR)/test_adc.o \
+C_TEST_FLAGS = -g -Wall -Wextra -Wconversion -DDEBUG_SIM
 LINKER_FLAGS = -Wl,-Map,$(BUILD_DIR)/main.map
 
+# Targets
+TARGET = main.elf
+TEST_TARGET = test_main
+
+# Main folders
+BUILD_DIR = build
+SRC_DIR = src
+TEST_DIR = tests
+
+# Source objects
+SOURCES = $(wildcard $(SRC_DIR)/*.c)
+INCLUDES = $(wildcard $(SRC_DIR)/*.h)
+OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+# Source objects for unit testing
+TEST_SOURCES = $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c))
+TEST_INCLUDES = $(wildcard $(SRC_DIR)/*.h)
+TEST_OBJECTS = $(TEST_SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/t_%.o)
+
+# Unit test objects
+UT_SOURCES = $(wildcard $(TEST_DIR)/*.c)
+UT_INCLUDES = $(wildcard $(TEST_DIR)/*.h)
+UT_OBJECTS = $(UT_SOURCES:$(TEST_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+# Ports to program the board
 ifeq ($(shell uname -s),Darwin)
 	PORT = /dev/tty.usbmodem11201
 else
 	PORT = COM3
 endif
 
-all: build $(OBJS)
-	$(CC) $(CFLAGS) $(LINKER_FLAGS) $(SRC_DIR)/main.c -o $(BUILD_DIR)/main.elf $(OBJS)
+# Build target for HW board
+$(BUILD_DIR)/$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) $(LINKER_FLAGS) -o $@ $(OBJECTS)
 	$(OBJCOPY) -O ihex -R .eeprom $(BUILD_DIR)/main.elf $(BUILD_DIR)/main.hex
 
-test: build $(TEST_OBJS)
-	$(CC_TEST) $(C_TEST_FLAGS) tests/gpio_test.c $(TEST_OBJS) -o $(BUILD_DIR)/gpio_test
+# Build target for unit testing
+$(BUILD_DIR)/$(TEST_TARGET): $(TEST_OBJECTS) $(UT_OBJECTS)
+	echo $(TEST_SOURCES)
+	$(CC_TEST) $(C_TEST_FLAGS) -o $@ $(TEST_OBJECTS) $(UT_OBJECTS)
+
+test: $(BUILD_DIR)/$(TEST_TARGET)
 
 run_test:
-	$(BUILD_DIR)/gpio_test
+	$(BUILD_DIR)/test_main
 
-# Build for target
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c build
+# Build source objects for HW board
+$(OBJECTS): $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES) build
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Build for simulation
-$(BUILD_DIR)/test_%.o: $(SRC_DIR)/%.c build
+# Build source objects for unit tests
+$(TEST_OBJECTS): $(BUILD_DIR)/t_%.o : $(SRC_DIR)/%.c $(INCLUDES) build
 	$(CC_TEST) $(C_TEST_FLAGS) -c $< -o $@
 
-# TODO: ...
-$(BUILD_DIR)/avr_io_mock.o: tests/avr_io_mock.c build
+# Build unit tests
+$(UT_OBJECTS): $(BUILD_DIR)/%.o : $(TEST_DIR)/%.c $(UT_INCLUDES) build
 	$(CC_TEST) $(C_TEST_FLAGS) -c $< -o $@
 
 flash:
@@ -64,5 +79,3 @@ build:
 
 clean:
 	rm -rf build/*
-
-full: clean all flash

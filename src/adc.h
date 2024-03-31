@@ -2,7 +2,7 @@
 #define ADC_H_
 
 #include "gpio.h"
-#ifdef AVR_TEST
+#ifdef DEBUG_SIM
 #include "../tests/avr_io_mock.h"
 #else
 #include <avr/io.h>

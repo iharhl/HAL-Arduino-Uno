@@ -36,6 +36,12 @@ volatile uint8_t SPCR = 0; // SPI Control Register
 volatile uint8_t SPSR = 0; // SPI Status Register
 volatile uint8_t SPDR = 0; // SPI Data Register
 
+// ADC Registers
+volatile uint8_t ADMUX = 0; // ADC Multiplexer Selection Register
+volatile uint8_t ADCSRA = 0; // ADC Control and Status Register A
+volatile uint8_t ADCL = 0; // ADC Data Register (low byte)
+volatile uint8_t ADCH = 0; // ADC Data Register (high byte)
+
 /* ****** Registers' bits ********** */
 
 // Bits No. of TCCR0A register
@@ -97,3 +103,19 @@ volatile uint8_t SPR0 = 0;
 volatile uint8_t SPIF = 7;
 volatile uint8_t WCOL = 6;
 volatile uint8_t SPI2X = 0;
+
+// Bits No. of ADMUX
+extern volatile uint8_t REFS1 = 7;
+extern volatile uint8_t REFS0 = 6;
+extern volatile uint8_t MUX3 = 3;
+extern volatile uint8_t MUX2 = 2;
+extern volatile uint8_t MUX1 = 1;
+extern volatile uint8_t MUX0 = 0;
+
+// Bits No. of ADCSRA
+extern volatile uint8_t ADEN = 7;
+extern volatile uint8_t ADSC = 6;
+extern volatile uint8_t ADIF = 4;
+extern volatile uint8_t ADPS2 = 2;
+extern volatile uint8_t ADPS1 = 1;
+extern volatile uint8_t ADPS0 = 0;

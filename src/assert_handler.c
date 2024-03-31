@@ -2,7 +2,7 @@
 #include "gpio.h"
 #include <assert.h>
 
-#ifndef AVR_TEST
+#ifndef DEBUG_SIM
 #include <util/delay.h>
 #endif
 

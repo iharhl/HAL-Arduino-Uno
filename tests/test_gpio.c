@@ -1,3 +1,4 @@
+#include "test_gpio.h"
 #include "avr_io_mock.h"
 #include "../src/gpio.h"
 #include "../src/assert_handler.h"
@@ -5,7 +6,7 @@
 #include "../src/trace.h"
 #include <stdio.h>
 
-int main()
+void RUN_GPIO_TEST(void)
 {
     // Arrange
     printf("Arrange\n");
@@ -29,6 +30,4 @@ int main()
 
     //
     ASSERT(state == true);
-
-    return 0;
 }
