@@ -115,5 +115,5 @@ GPIO_State_e HAL_GPIO_ReadPin(const uint8_t Pin)
     const uint8_t port = get_port(Pin);
     const uint8_t pin_bit = get_pin_bit(Pin);
 
-    return *port_pull_regs[port] &= (1 << pin_bit);
+    return *port_pull_regs[port] & (1 << pin_bit);
 }

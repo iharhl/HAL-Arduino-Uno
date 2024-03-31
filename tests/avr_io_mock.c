@@ -105,17 +105,17 @@ volatile uint8_t WCOL = 6;
 volatile uint8_t SPI2X = 0;
 
 // Bits No. of ADMUX
-extern volatile uint8_t REFS1 = 7;
-extern volatile uint8_t REFS0 = 6;
-extern volatile uint8_t MUX3 = 3;
-extern volatile uint8_t MUX2 = 2;
-extern volatile uint8_t MUX1 = 1;
-extern volatile uint8_t MUX0 = 0;
+volatile uint8_t REFS1 = 7;
+volatile uint8_t REFS0 = 6;
+volatile uint8_t MUX3 = 3;
+volatile uint8_t MUX2 = 2;
+volatile uint8_t MUX1 = 1;
+volatile uint8_t MUX0 = 0;
 
 // Bits No. of ADCSRA
-extern volatile uint8_t ADEN = 7;
-extern volatile uint8_t ADSC = 6;
-extern volatile uint8_t ADIF = 4;
-extern volatile uint8_t ADPS2 = 2;
-extern volatile uint8_t ADPS1 = 1;
-extern volatile uint8_t ADPS0 = 0;
+volatile uint8_t ADEN = 7;
+volatile uint8_t ADSC = 6;
+volatile uint8_t ADIF = 4;
+volatile uint8_t ADPS2 = 2;
+volatile uint8_t ADPS1 = 1;
+volatile uint8_t ADPS0 = 0;

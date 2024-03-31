@@ -10,9 +10,9 @@
     do                          \
     {                           \
         if (!(expression))      \
-        {                       \
-            TRACE("ERROR");     \
-        }                       \
+            TRACE("FAIL");      \
+        else                    \
+            TRACE("PASS");      \
     } while(0)
 #else
 #define ASSERT(expression)      \
