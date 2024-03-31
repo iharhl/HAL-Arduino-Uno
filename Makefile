@@ -42,15 +42,15 @@ $(BUILD_DIR)/$(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $(LINKER_FLAGS) -o $@ $(OBJECTS)
 	$(OBJCOPY) -O ihex -R .eeprom $(BUILD_DIR)/main.elf $(BUILD_DIR)/main.hex
 
+test: $(BUILD_DIR)/$(TEST_TARGET)
+
+run_test:
+	$(BUILD_DIR)/$(TEST_TARGET)
+
 # Build target for unit testing
 $(BUILD_DIR)/$(TEST_TARGET): $(TEST_OBJECTS) $(UT_OBJECTS)
 	echo $(TEST_SOURCES)
 	$(CC_TEST) $(C_TEST_FLAGS) -o $@ $(TEST_OBJECTS) $(UT_OBJECTS)
-
-test: $(BUILD_DIR)/$(TEST_TARGET)
-
-run_test:
-	$(BUILD_DIR)/test_main
 
 # Build source objects for HW board
 $(OBJECTS): $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES) build
