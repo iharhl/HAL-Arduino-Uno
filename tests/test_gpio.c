@@ -2,16 +2,14 @@
 #include "avr_io_mock.h"
 #include "../src/gpio.h"
 #include "../src/assert_handler.h"
-#include "../src/trace.h"
 #include <stdbool.h>
 #include <stdio.h>
 
 void TEST_GPIO_INIT(void)
 {
     // Arrange
-    HAL_Trace_Init();
-    HAL_GPIO_Init();
     // Act
+    HAL_GPIO_Init();
     // Assert
     ASSERT(DDRD == 0b00000000); // port dir INPUT
     ASSERT(PORTD == 0b11111111); // port pull UP
@@ -63,9 +61,11 @@ void TEST_GPIO_TOGGLEPIN(void)
 
 void RUN_GPIO_TESTS(void)
 {
+    printf("\n================= GPIO TESTS =================\n");
     TEST_GPIO_INIT();
     TEST_GPIO_CONFIGPIN();
     TEST_GPIO_READPIN();
     TEST_GPIO_WRITEPIN();
     TEST_GPIO_TOGGLEPIN();
+    printf("===========================================\n");
 }

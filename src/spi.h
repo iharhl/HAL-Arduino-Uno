@@ -16,6 +16,6 @@
 void HAL_SPI_MasterInit(void);
 void HAL_SPI_MasterTx(const char Data);
 void HAL_SPI_SlaveInit(void);
-char HAL_SPI_SlaveRx(void);
+uint8_t HAL_SPI_SlaveRx(void);
 
 #endif //SPI_H_

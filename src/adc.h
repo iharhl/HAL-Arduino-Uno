@@ -17,6 +17,6 @@ typedef enum
 
 void HAL_ADC_Init(void);
 void HAL_ADC_SelectVoltageRef(ADC_Ref_e VRef);
-int HAL_ADC_ReadPin(GPIO_Pin_e Pin);
+uint16_t HAL_ADC_ReadPin(GPIO_Pin_e Pin);
 
 #endif //ADC_H_

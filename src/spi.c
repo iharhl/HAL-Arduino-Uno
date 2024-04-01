@@ -24,9 +24,11 @@ void HAL_SPI_SlaveInit(void)
     // TODO: assert pin config
     /* Enable SPI */
     SPCR |= (1<<SPE);
+    /* Reset Master bit in case it was enabled before */
+    SPCR &= ~(1<<MSTR);
 }
 
-char HAL_SPI_SlaveRx(void)
+uint8_t HAL_SPI_SlaveRx(void)
 {
     /* Wait for reception complete */
     while(!(SPSR & (1<<SPIF)))

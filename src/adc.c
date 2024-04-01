@@ -4,9 +4,9 @@
 void HAL_ADC_Init(void)
 {
     ADMUX = (1<<REFS1) | (1<<REFS0); // internal ref
-    ADMUX |= (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0); // prescaler clkfq/128
     ADMUX |= (1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX0); // input channel as GND
-    ADCSRA = (1<<ADEN); // enable ADC
+    ADCSRA = (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0); // prescaler clkfq/128
+    ADCSRA |= (1<<ADEN); // enable ADC
 }
 
 void HAL_ADC_SelectVoltageRef(const ADC_Ref_e VRef)
@@ -26,7 +26,7 @@ void HAL_ADC_SelectVoltageRef(const ADC_Ref_e VRef)
     }
 }
 
-int HAL_ADC_ReadPin(GPIO_Pin_e Pin)
+uint16_t HAL_ADC_ReadPin(GPIO_Pin_e Pin)
 {
     if (Pin < PIN_A0)
         ASSERT(0);
@@ -70,5 +70,5 @@ int HAL_ADC_ReadPin(GPIO_Pin_e Pin)
     const uint8_t adc_rx_byte_l = ADCL;
     const uint8_t adc_rx_byte_h = ADCH;
 
-    return (int)(adc_rx_byte_l + adc_rx_byte_h * (1<<8));
+    return (uint16_t)(adc_rx_byte_l + adc_rx_byte_h * (1<<8));
 }

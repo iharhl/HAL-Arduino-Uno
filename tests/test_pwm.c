@@ -3,7 +3,6 @@
 #include "../src/gpio.h"
 #include "../src/pwm.h"
 #include "../src/assert_handler.h"
-#include "../src/trace.h"
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -11,8 +10,8 @@ void TEST_PWM_INIT(void)
 {
     // Arrange
     HAL_GPIO_Init();
-    HAL_PWM_Init();
     // Act
+    HAL_PWM_Init();
     // Assert
     ASSERT(TCCR0A == 0b00000000);
     ASSERT(TCCR0B == 0b00000000);
@@ -42,7 +41,9 @@ void TEST_PWM_WRITEPIN(void)
 
 void RUN_PWM_TESTS(void)
 {
+    printf("\n================ PWM TESTS ===============\n");
     TEST_PWM_INIT();
     TEST_PWM_CONFIGPIN();
     TEST_PWM_WRITEPIN();
+    printf("===========================================\n");
 }
