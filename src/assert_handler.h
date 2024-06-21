@@ -2,6 +2,7 @@
 #define ASSERT_HANDLER_H_
 
 #include <stdio.h>
+#include "config.h"
 
 #ifdef DEBUG_SIM
 #include <stdlib.h>

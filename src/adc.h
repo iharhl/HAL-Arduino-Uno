@@ -1,6 +1,7 @@
 #ifndef ADC_H_
 #define ADC_H_
 
+#include "config.h"
 #include "gpio.h"
 #ifdef DEBUG_SIM
 #include "../tests/avr_io_mock.h"

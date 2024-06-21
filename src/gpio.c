@@ -10,9 +10,9 @@ static inline uint8_t get_port(const GPIO_Pin_e pin)
 {
     if (pin < 8)
         return 0; // DDRD or PORTD
-    else if (pin >= 8 && pin < 14)
+    else if (pin < 14)
         return 1; // DDRB or PORTB
-    else if (pin >= 14 && pin < 21)
+    else if (pin < 21)
         return 2; //DDRC or PORTC
     ASSERT(0);
 }
@@ -23,9 +23,9 @@ static inline uint8_t get_pin_bit(const GPIO_Pin_e pin)
 {
     if (pin < 8)
         return (uint8_t)pin;
-    else if (pin >= 8 && pin < 14)
+    else if (pin < 14)
         return (uint8_t)(pin-8);
-    else if (pin >= 14 && pin < 21)
+    else if (pin < 21)
         return (uint8_t)(pin-14);
     ASSERT(0);
 }

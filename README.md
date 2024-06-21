@@ -31,4 +31,7 @@ Install packages using homebrew:
 2) <code>brew tap osx-cross/avr</code>
 3) <code>brew install avr-gcc avr-binutils</code> 
 
-Linting gives a headache for now...
+For linting:
+
+1) Go to VSCode setting and find C/C++ include path
+2) Add path to avr include folder e.g., <code>/opt/homebrew/Cellar/avr-gcc@9/9.4.0_1/avr/include</code>

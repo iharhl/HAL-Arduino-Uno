@@ -42,6 +42,12 @@ volatile uint8_t ADCSRA = 0; // ADC Control and Status Register A
 volatile uint8_t ADCL = 0; // ADC Data Register (low byte)
 volatile uint8_t ADCH = 0; // ADC Data Register (high byte)
 
+// Power Registers
+volatile uint8_t SMCR = 0; // Sleep Mode Control Register
+volatile uint8_t MCUCR = 0; // MCU Control Register
+volatile uint8_t PRR = 0; // Power Reduction Register
+
+
 /* ****** Registers' bits ********** */
 
 // Bits No. of TCCR0A register
@@ -119,3 +125,18 @@ volatile uint8_t ADIF = 4;
 volatile uint8_t ADPS2 = 2;
 volatile uint8_t ADPS1 = 1;
 volatile uint8_t ADPS0 = 0;
+
+// Bits No. of SMCR
+volatile uint8_t SE = 0;
+volatile uint8_t SM0 = 1;
+volatile uint8_t SM1 = 2;
+volatile uint8_t SM2 = 3;
+
+// Bits No. of PRR
+volatile uint8_t PRADC = 0;
+volatile uint8_t PRUSART0 = 1;
+volatile uint8_t PRSPI = 2;
+volatile uint8_t PRTIM1 = 3;
+volatile uint8_t PRTIM0 = 5;
+volatile uint8_t PRTIM2 = 6;
+volatile uint8_t PRTWI = 7;

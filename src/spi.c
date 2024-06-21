@@ -9,7 +9,7 @@ void HAL_SPI_MasterInit(void)
     SPCR |= (1<<SPE) | (1<<MSTR);
 }
 
-void HAL_SPI_MasterTx(const char Data)
+void HAL_SPI_MasterTx(const uint8_t Data)
 {
     // TODO: assert pin config
     /* Start transmission */

@@ -1,6 +1,7 @@
 #ifndef PWM_H_
 #define PWM_H_
 
+#include "config.h"
 #include <stdbool.h>
 #ifdef DEBUG_SIM
 #include "../tests/avr_io_mock.h"

@@ -45,6 +45,12 @@ extern volatile uint8_t ADCSRA; // ADC Control and Status Register A
 extern volatile uint8_t ADCL; // ADC Data Register (low byte)
 extern volatile uint8_t ADCH; // ADC Data Register (high byte)
 
+// Power Registers
+extern volatile uint8_t SMCR; // Sleep Mode Control Register
+extern volatile uint8_t MCUCR; // MCU Control Register
+extern volatile uint8_t PRR; // Power Reduction Register
+
+
 /* ****** Registers' bits ********** */
 
 // Bits No. of TCCR0A register
@@ -122,5 +128,20 @@ extern volatile uint8_t ADIF;
 extern volatile uint8_t ADPS2;
 extern volatile uint8_t ADPS1;
 extern volatile uint8_t ADPS0;
+
+// Bits No. of SMCR
+extern volatile uint8_t SE;
+extern volatile uint8_t SM0;
+extern volatile uint8_t SM1;
+extern volatile uint8_t SM2;
+
+// Bits No. of PRR
+extern volatile uint8_t PRADC;
+extern volatile uint8_t PRUSART0;
+extern volatile uint8_t PRSPI;
+extern volatile uint8_t PRTIM1;
+extern volatile uint8_t PRTIM0;
+extern volatile uint8_t PRTIM2;
+extern volatile uint8_t PRTWI;
 
 #endif
