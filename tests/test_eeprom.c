@@ -15,7 +15,7 @@ void TEST_EEPROM_READBYTE(void)
     // Assert
     ASSERT(EEAR == 0b0000001001);
     ASSERT(EECR == 0b00000001);
-    ASSERT(value = 255);
+    ASSERT(value == 255);
     // Cleanup
     EECR = EEAR = EEDR = 0;
 }
@@ -39,8 +39,59 @@ void TEST_EEPROM_WRITEBYTE(void)
     EECR = EEAR = EEDR = 0;
 }
 
+void TEST_EEPROM_READWORD(void)
+{
+    // Arrange
+    int address = 9;
+    EEDR = 0xFA; // mock eeprom value stored (2x for this test)
+    EECR &= ~(1<<EEPE); // mock hardware clearing EEPE bit
+                        // after prev eeprom write
+    // Act
+    uint16_t value = HAL_EEPROM_Read_Word(address);
+    // Assert
+    ASSERT(value == 0xFAFA);
+    // Cleanup
+    EECR = EEAR = EEDR = 0;
+}
+
+void TEST_EEPROM_WRITEWORD(void)
+{
+    // TODO: not testable with current approach
+    // The test is going to be locked in while loop.
+}
+
+void TEST_EEPROM_READFLOAT(void)
+{
+    // Arrange
+    int address = 9;
+    float expected_value = 3.0039215087890625; // hex = 0x40404040
+    float expected_error = 0.0000000087890625;
+    EEDR = 0x40; // mock eeprom value stored (4x for this test)
+    EECR &= ~(1<<EEPE); // mock hardware clearing EEPE bit
+                        // after prev eeprom write
+    // Act
+    float value = HAL_EEPROM_Read_Float(address);
+    // Assert
+    ASSERT(expected_value >= value - expected_error);
+    ASSERT(expected_value <= value + expected_error);
+    // Cleanup
+    EECR = EEAR = EEDR = 0;
+}
+
+void TEST_EEPROM_WRITEFLOAT(void)
+{
+    // TODO: not testable with current approach
+    // The test is going to be locked in while loop.
+}
+
 void RUN_EEPROM_TESTS(void)
 {
+    printf("\n================ EEPROM TESTS ===============\n");
     TEST_EEPROM_WRITEBYTE();
     TEST_EEPROM_READBYTE();
+    TEST_EEPROM_READWORD();
+    TEST_EEPROM_WRITEWORD();
+    TEST_EEPROM_READFLOAT();
+    TEST_EEPROM_WRITEFLOAT();
+    printf("===========================================\n");
 }
