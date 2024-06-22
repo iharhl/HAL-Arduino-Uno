@@ -1,4 +1,4 @@
-#include "test_power.h"
+#include "unit_tests.h"
 #include "../src/power.h"
 #include "../src/assert_handler.h"
 #include "avr_io_mock.h"

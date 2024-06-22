@@ -1,4 +1,4 @@
-#include "test_spi.h"
+#include "unit_tests.h"
 #include "avr_io_mock.h"
 #include "../src/gpio.h"
 #include "../src/spi.h"

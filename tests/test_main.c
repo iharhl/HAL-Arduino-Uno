@@ -1,9 +1,4 @@
-#include "test_gpio.h"
-#include "test_pwm.h"
-#include "test_spi.h"
-#include "test_adc.h"
-#include "test_power.h"
-#include "test_eeprom.h"
+#include "unit_tests.h"
 #include "../src/trace.h"
 
 int main()

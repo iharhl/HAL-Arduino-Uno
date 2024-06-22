@@ -22,8 +22,7 @@ INCLUDES = $(wildcard $(SRC_DIR)/*.h)
 OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 # Source objects for unit testing
-TEST_SOURCES = $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c))
-TEST_INCLUDES = $(wildcard $(SRC_DIR)/*.h)
+TEST_SOURCES = $(filter-out $(SRC_DIR)/main.c, $(SOURCES))
 TEST_OBJECTS = $(TEST_SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/t_%.o)
 
 # Unit test objects
@@ -60,7 +59,7 @@ $(OBJECTS): $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES) build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Build source objects for unit tests
-$(TEST_OBJECTS): $(BUILD_DIR)/t_%.o : $(SRC_DIR)/%.c $(TEST_INCLUDES) build
+$(TEST_OBJECTS): $(BUILD_DIR)/t_%.o : $(SRC_DIR)/%.c $(INCLUDES) build
 	$(CC_TEST) $(C_TEST_FLAGS) -c $< -o $@
 
 # Build unit tests

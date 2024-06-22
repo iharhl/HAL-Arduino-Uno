@@ -1,4 +1,4 @@
-#include "test_adc.h"
+#include "unit_tests.h"
 #include "avr_io_mock.h"
 #include "../src/gpio.h"
 #include "../src/adc.h"
