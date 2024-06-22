@@ -2,6 +2,7 @@
 #include <util/delay.h>
 #include "gpio.h"
 #include "pwm.h"
+#include "eeprom.h"
 
 int main(void)
 {

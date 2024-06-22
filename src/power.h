@@ -1,5 +1,5 @@
-#ifndef PWR_MGMT_H
-#define PWR_MGMT_H
+#ifndef POWER_H
+#define POWER_H
 
 typedef enum
 {
@@ -22,10 +22,10 @@ typedef enum
     SLEEP_MODE_EXT_STANDBY      = 0b1110,
 } Power_Mode_e;
 
-void HAL_PM_Enable_Module(Module_e module);
-void HAL_PM_Disable_Module(Module_e module);
-void HAL_PM_Set_Sleep_Mode(Power_Mode_e mode);
-void HAL_PM_Sleep(void);
-void HAL_PM_Init(void);
+void HAL_PWR_Enable_Module(Module_e module);
+void HAL_PWR_Disable_Module(Module_e module);
+void HAL_PWR_Set_Sleep_Mode(Power_Mode_e mode);
+void HAL_PWR_Sleep(void);
+void HAL_PWR_Init(void);
 
-#endif // PWR_MGMT_H
+#endif // POWER_H

@@ -1,4 +1,4 @@
-#include "pwr_mgmt.h"
+#include "power.h"
 
 #ifdef DEBUG_SIM
 #include "../tests/avr_io_mock.h"
@@ -9,7 +9,7 @@
 #include <avr/interrupt.h>
 #endif
 
-void HAL_PM_Enable_Module(const Module_e module)
+void HAL_PWR_Enable_Module(const Module_e module)
 {
     switch(module)
     {
@@ -37,7 +37,7 @@ void HAL_PM_Enable_Module(const Module_e module)
     }
 }
 
-void HAL_PM_Disable_Module(const Module_e module)
+void HAL_PWR_Disable_Module(const Module_e module)
 {
     switch(module)
     {
@@ -65,12 +65,12 @@ void HAL_PM_Disable_Module(const Module_e module)
     }
 }
 
-void HAL_PM_Set_Sleep_Mode(const Power_Mode_e mode)
+void HAL_PWR_Set_Sleep_Mode(const Power_Mode_e mode)
 {
     SMCR = (uint8_t)mode;
 }
 
-void HAL_PM_Sleep()
+void HAL_PWR_Sleep()
 {
     sleep_enable();
     sei();
@@ -78,7 +78,7 @@ void HAL_PM_Sleep()
     sleep_disable();
 }
 
-void HAL_PM_Init(void)
+void HAL_PWR_Init(void)
 {
     SMCR = 0;
     MCUCR = 0; // TODO: implement functionality

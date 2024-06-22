@@ -10,4 +10,6 @@
 #define F_CPU 16000000UL
 #endif
 
+#define EEPROM_SIZE 1024
+
 #endif

@@ -47,6 +47,11 @@ volatile uint8_t SMCR = 0; // Sleep Mode Control Register
 volatile uint8_t MCUCR = 0; // MCU Control Register
 volatile uint8_t PRR = 0; // Power Reduction Register
 
+// EEPROM Registers
+volatile uint16_t EEAR = 0; // EEPROM Address Register
+volatile uint8_t EEDR = 0; // EEPROM Data Register
+volatile uint8_t EECR = 0; // EEPROM Control Register
+
 
 /* ****** Registers' bits ********** */
 
@@ -140,3 +145,11 @@ volatile uint8_t PRTIM1 = 3;
 volatile uint8_t PRTIM0 = 5;
 volatile uint8_t PRTIM2 = 6;
 volatile uint8_t PRTWI = 7;
+
+// Bits No. of EECR
+volatile uint8_t EEPM1 = 5;
+volatile uint8_t EEPM0 = 4;
+volatile uint8_t EERIE = 3;
+volatile uint8_t EEMPE = 2;
+volatile uint8_t EEPE = 1;
+volatile uint8_t EERE = 0;

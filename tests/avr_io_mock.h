@@ -50,6 +50,11 @@ extern volatile uint8_t SMCR; // Sleep Mode Control Register
 extern volatile uint8_t MCUCR; // MCU Control Register
 extern volatile uint8_t PRR; // Power Reduction Register
 
+// EEPROM Registers
+extern volatile uint16_t EEAR; // EEPROM Address Register
+extern volatile uint8_t EEDR; // EEPROM Data Register
+extern volatile uint8_t EECR; // EEPROM Control Register
+
 
 /* ****** Registers' bits ********** */
 
@@ -143,5 +148,13 @@ extern volatile uint8_t PRTIM1;
 extern volatile uint8_t PRTIM0;
 extern volatile uint8_t PRTIM2;
 extern volatile uint8_t PRTWI;
+
+// Bits No. of EECR
+extern volatile uint8_t EEPM1;
+extern volatile uint8_t EEPM0;
+extern volatile uint8_t EERIE;
+extern volatile uint8_t EEMPE;
+extern volatile uint8_t EEPE;
+extern volatile uint8_t EERE;
 
 #endif
