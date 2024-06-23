@@ -11,9 +11,7 @@
     do                          \
     {                           \
         if (!(expression))      \
-            TRACE("FAIL");      \
-        else                    \
-            TRACE("PASS");      \
+            TRACE("FAILURE");   \
     } while(0)
 #else
 #define ASSERT(expression)      \

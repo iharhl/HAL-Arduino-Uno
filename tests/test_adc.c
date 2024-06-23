@@ -1,8 +1,8 @@
 #include "unit_tests.h"
 #include "avr_io_mock.h"
+#include "assert.h"
 #include "../src/gpio.h"
 #include "../src/adc.h"
-#include "../src/assert_handler.h"
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -13,8 +13,8 @@ void TEST_ADC_INIT(void)
     // Act
     HAL_ADC_Init();
     // Assert
-    ASSERT(ADMUX == 0b11001111);
-    ASSERT(ADCSRA == 0b10000111);
+    ASSERT_EQ(ADMUX, 0b11001111);
+    ASSERT_EQ(ADCSRA, 0b10000111);
 }
 
 void TEST_ADC_SELVOLTREF(void)
@@ -23,7 +23,7 @@ void TEST_ADC_SELVOLTREF(void)
     // Act
     HAL_ADC_SelectVoltageRef(EXT_AREF);
     // Assert
-    ASSERT(ADMUX == 0b00001111);
+    ASSERT_EQ(ADMUX, 0b00001111);
 }
 
 void TEST_ADC_READPIN(void)
@@ -36,8 +36,8 @@ void TEST_ADC_READPIN(void)
     uint16_t res = HAL_ADC_ReadPin(PIN_A0);
     ADCSRA &= ~(1<<ADSC); // mock adc conversion complete
     // Assert
-    ASSERT(ADMUX == 0b00000000); // input chan select is set to ADC0
-    ASSERT(res == 729);
+    ASSERT_EQ(ADMUX, 0b00000000); // input chan select is set to ADC0
+    ASSERT_EQ(res, 729);
 }
 
 void RUN_ADC_TESTS(void)

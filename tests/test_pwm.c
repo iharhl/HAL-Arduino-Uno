@@ -1,8 +1,8 @@
 #include "unit_tests.h"
 #include "avr_io_mock.h"
+#include "assert.h"
 #include "../src/gpio.h"
 #include "../src/pwm.h"
-#include "../src/assert_handler.h"
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -13,10 +13,10 @@ void TEST_PWM_INIT(void)
     // Act
     HAL_PWM_Init();
     // Assert
-    ASSERT(TCCR0A == 0b00000000);
-    ASSERT(TCCR0B == 0b00000000);
-    ASSERT(OCR0A == 0);
-    ASSERT(OCR0B == 0);
+    ASSERT_EQ(TCCR0A, 0b00000000);
+    ASSERT_EQ(TCCR0B, 0b00000000);
+    ASSERT_EQ(OCR0A, 0);
+    ASSERT_EQ(OCR0B, 0);
 }
 
 void TEST_PWM_CONFIGPIN(void)
@@ -25,9 +25,9 @@ void TEST_PWM_CONFIGPIN(void)
     // Act
     HAL_PWM_ConfigurePin(PIN_5, false);
     // Assert
-    ASSERT(TCCR0A == 0b00100011);
-    ASSERT(TCCR0B == 0b00000001);
-    ASSERT(OCR0B == 0);
+    ASSERT_EQ(TCCR0A, 0b00100011);
+    ASSERT_EQ(TCCR0B, 0b00000001);
+    ASSERT_EQ(OCR0B, 0);
 }
 
 void TEST_PWM_WRITEPIN(void)
@@ -36,7 +36,7 @@ void TEST_PWM_WRITEPIN(void)
     // Act
     HAL_PWM_Write(PIN_5, 111);
     // Assert
-    ASSERT(OCR0B == 111);
+    ASSERT_EQ(OCR0B, 111);
 }
 
 void RUN_PWM_TESTS(void)

@@ -12,7 +12,7 @@
 
 // TODO: disable interrupts
 
-void HAL_EEPROM_Write_Byte(int address, const uint8_t value)
+void HAL_EEPROM_Write_Byte(const int address, const uint8_t value)
 {
     /* Check if the value changed */
     if (HAL_EEPROM_Read_Byte(address) == value)
@@ -29,7 +29,7 @@ void HAL_EEPROM_Write_Byte(int address, const uint8_t value)
     EECR |= (1<<EEPE);
 }
 
-uint8_t HAL_EEPROM_Read_Byte(int address)
+uint8_t HAL_EEPROM_Read_Byte(const int address)
 {
     /* Assert address does not overflow */
     ASSERT(address < EEPROM_SIZE);
@@ -44,7 +44,7 @@ uint8_t HAL_EEPROM_Read_Byte(int address)
     return EEDR;
 }
 
-void HAL_EEPROM_Write_Word(int address, uint16_t value)
+void HAL_EEPROM_Write_Word(const int address, const uint16_t value)
 {
     /* Split value into low and high byte */
     const uint8_t eeprom_byte_l = value & 0xFF;
@@ -54,7 +54,7 @@ void HAL_EEPROM_Write_Word(int address, uint16_t value)
     HAL_EEPROM_Write_Byte(address+1, eeprom_byte_h);
 }
 
-uint16_t HAL_EEPROM_Read_Word(int address)
+uint16_t HAL_EEPROM_Read_Word(const int address)
 {
     /* Read low byte */
     const uint8_t eeprom_byte_l = HAL_EEPROM_Read_Byte(address);
@@ -64,7 +64,7 @@ uint16_t HAL_EEPROM_Read_Word(int address)
     return eeprom_byte_l + eeprom_byte_h * (1<<8);
 }
 
-void HAL_EEPROM_Write_Float(int address, float value)
+void HAL_EEPROM_Write_Float(const int address, const float value)
 {
     /* Split value into low and high word */
     const uint32_t value_dword = reinterpret_cast(uint32_t, value);
@@ -75,7 +75,7 @@ void HAL_EEPROM_Write_Float(int address, float value)
     HAL_EEPROM_Write_Word(address+2, eeprom_word_h);
 }
 
-float HAL_EEPROM_Read_Float(int address)
+float HAL_EEPROM_Read_Float(const int address)
 {
     /* Read low word */
     const uint16_t eeprom_word_l = HAL_EEPROM_Read_Word(address);
