@@ -55,6 +55,13 @@ extern volatile uint16_t EEAR; // EEPROM Address Register
 extern volatile uint8_t EEDR; // EEPROM Data Register
 extern volatile uint8_t EECR; // EEPROM Control Register
 
+// USART Registers
+extern volatile uint8_t UDR0; // USART I/O Data Register
+extern volatile uint8_t UCSR0A; // USART Control and Status Register A
+extern volatile uint8_t UCSR0B; // USART Control and Status Register B
+extern volatile uint8_t UCSR0C; // USART Control and Status Register C
+extern volatile uint16_t UBRR0; // USART Baud Rate Register (H and L)
+
 
 /* ****** Registers' bits ********** */
 
@@ -156,5 +163,35 @@ extern volatile uint8_t EERIE;
 extern volatile uint8_t EEMPE;
 extern volatile uint8_t EEPE;
 extern volatile uint8_t EERE;
+
+// Bits of UCSR0A
+extern volatile uint8_t RXC0;
+extern volatile uint8_t TXC0;
+extern volatile uint8_t UDRE0;
+extern volatile uint8_t FE0;
+extern volatile uint8_t DOR0;
+extern volatile uint8_t UPE0;
+extern volatile uint8_t U2X0;
+extern volatile uint8_t MPCM0;
+
+// Bits of UCSR0B
+extern volatile uint8_t RXCIE0;
+extern volatile uint8_t TXCIE0;
+extern volatile uint8_t UDRIE0;
+extern volatile uint8_t RXEN0;
+extern volatile uint8_t TXEN0;
+extern volatile uint8_t UCSZ02;
+extern volatile uint8_t RXB80;
+extern volatile uint8_t TXB80;
+
+// Bits of UCSR0C
+extern volatile uint8_t UMSEL01;
+extern volatile uint8_t UMSEL00;
+extern volatile uint8_t UPM01;
+extern volatile uint8_t UPM00;
+extern volatile uint8_t USBS0;
+extern volatile uint8_t UCSZ01;
+extern volatile uint8_t UCSZ00;
+extern volatile uint8_t UCPOL0;
 
 #endif

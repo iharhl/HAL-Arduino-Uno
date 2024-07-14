@@ -11,6 +11,7 @@ int main()
     RUN_ADC_TESTS();
     RUN_PWR_TESTS();
     RUN_EEPROM_TESTS();
+    RUN_USART_TESTS();
 
     return 0;
 }

@@ -7,5 +7,6 @@ void RUN_GPIO_TESTS(void);
 void RUN_PWR_TESTS(void);
 void RUN_PWM_TESTS(void);
 void RUN_SPI_TESTS(void);
+void RUN_USART_TESTS(void);
 
 #endif //UNIT_TESTS_H

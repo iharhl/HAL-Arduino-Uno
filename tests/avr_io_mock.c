@@ -52,6 +52,13 @@ volatile uint16_t EEAR = 0; // EEPROM Address Register
 volatile uint8_t EEDR = 0; // EEPROM Data Register
 volatile uint8_t EECR = 0; // EEPROM Control Register
 
+// USART Registers
+volatile uint8_t UDR0 = 0; // USART I/O Data Register
+volatile uint8_t UCSR0A = 0; // USART Control and Status Register A
+volatile uint8_t UCSR0B = 0; // USART Control and Status Register B
+volatile uint8_t UCSR0C = 0; // USART Control and Status Register C
+volatile uint16_t UBRR0 = 0; // USART Baud Rate Register (H and L)
+
 
 /* ****** Registers' bits ********** */
 
@@ -153,3 +160,33 @@ volatile uint8_t EERIE = 3;
 volatile uint8_t EEMPE = 2;
 volatile uint8_t EEPE = 1;
 volatile uint8_t EERE = 0;
+
+// Bits of UCSR0A
+volatile uint8_t RXC0 = 7;
+volatile uint8_t TXC0 = 6;
+volatile uint8_t UDRE0 = 5;
+volatile uint8_t FE0 = 4;
+volatile uint8_t DOR0 = 3;
+volatile uint8_t UPE0 = 2;
+volatile uint8_t U2X0 = 1;
+volatile uint8_t MPCM0 = 0;
+
+// Bits of UCSR0B
+volatile uint8_t RXCIE0 = 7;
+volatile uint8_t TXCIE0 = 6;
+volatile uint8_t UDRIE0 = 5;
+volatile uint8_t RXEN0 = 4;
+volatile uint8_t TXEN0 = 3;
+volatile uint8_t UCSZ02 = 2;
+volatile uint8_t RXB80 = 1;
+volatile uint8_t TXB80 = 0;
+
+// Bits of UCSR0C
+volatile uint8_t UMSEL01 = 7;
+volatile uint8_t UMSEL00 = 6;
+volatile uint8_t UPM01 = 5;
+volatile uint8_t UPM00 = 4;
+volatile uint8_t USBS0 = 3;
+volatile uint8_t UCSZ01 = 2;
+volatile uint8_t UCSZ00 = 1;
+volatile uint8_t UCPOL0 = 0;
