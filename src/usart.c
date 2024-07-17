@@ -7,17 +7,17 @@
 #include <avr/io.h>
 #endif
 
-#define BAUD_PRESCALE (F_CPU / (USART_BAUD_RATE * 16UL) - 1)
+#define BAUD_PRESCALE
 
 // UBBRn register is 11 bits long
-#define BAUD_PRESCALE_MIN 0
-#define BAUD_PRESCALE_MAX 2047
+#define BAUD_PRESCALE_MAX ((1<<12)-1)
 
-void HAL_USART_Init(const USART_FrameFormat_s* format)
+void HAL_USART_Init(const USART_FrameFormat_s* format, const uint32_t baud_rate)
 {
-    /*Set baud rate */
-    ASSERT(BAUD_PRESCALE >= BAUD_PRESCALE_MIN && BAUD_PRESCALE <= BAUD_PRESCALE_MAX);
-    UBRR0 = BAUD_PRESCALE;
+    /* Set baud rate */
+    const uint16_t ubrr = F_CPU / (baud_rate * 16) - 1;
+    ASSERT(ubrr <= BAUD_PRESCALE_MAX);
+    UBRR0 = ubrr;
     /* Enable receiver and transmitter */
     UCSR0B = (1<<RXEN0) | (1<<TXEN0);
     /* Write the frame format */
@@ -26,7 +26,7 @@ void HAL_USART_Init(const USART_FrameFormat_s* format)
     UCSR0C |= (1<<UCSZ00) | (1<<UCSZ01);
 }
 
-void HAL_USART_Transmit(const uint8_t data)
+void HAL_USART_TxByte(const uint8_t data)
 {
     /* Wait for empty transmit buffer */
     while (!(UCSR0A & (1<<UDRE0)))
@@ -35,13 +35,32 @@ void HAL_USART_Transmit(const uint8_t data)
     UDR0 = data;
 }
 
-uint8_t HAL_USART_Receive(void)
+uint8_t HAL_USART_RxByte(void)
 {
     /* Wait for data to be received */
     while (!(UCSR0A & (1<<RXC0)))
         ;
     /* Get and return received data from buffer */
     return UDR0;
+}
+
+void HAL_USART_TxWord(const uint16_t data)
+{
+    /* Split value into low and high byte */
+    const uint8_t data_byte_l = data & 0xFF;
+    const uint8_t data_byte_h = (data >> 8) & 0xFF;
+    /* Transmit bytes one-by-one */
+    HAL_USART_TxByte(data_byte_l);
+    HAL_USART_TxByte(data_byte_h);
+}
+
+uint16_t HAL_USART_RxWord(void)
+{
+    /* Receive bytes one-by-one */
+    const uint8_t data_byte_l = HAL_USART_RxByte();
+    const uint8_t data_byte_h = HAL_USART_RxByte();
+    /* Return combined value */
+    return data_byte_l + data_byte_h * (1<<8);
 }
 
 void HAL_USART_SetMode(const USART_Mode_e mode)

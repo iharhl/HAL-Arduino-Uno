@@ -1,10 +1,10 @@
 # Flags
 CC = avr-gcc
 OBJCOPY = avr-objcopy
-CFLAGS = -Os -mmcu=atmega328p
+CFLAGS = -Os -mmcu=atmega328p -fdata-sections -ffunction-sections
 CC_TEST = gcc-14
 C_TEST_FLAGS = -g -Wall -Wextra -Wconversion -DDEBUG_SIM
-LINKER_FLAGS = -Wl,-Map=$(BUILD_DIR)/main.map
+LINKER_FLAGS = -Wl,--gc-sections,-Map=$(BUILD_DIR)/main.map,--cref
 TEST_LINKER_FLAGS = -Wl,-map,$(BUILD_DIR)/test_main.map
 
 # Targets

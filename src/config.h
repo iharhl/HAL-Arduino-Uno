@@ -12,6 +12,4 @@
 
 #define EEPROM_SIZE 1024
 
-#define USART_BAUD_RATE 9600
-
 #endif

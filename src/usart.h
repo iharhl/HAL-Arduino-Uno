@@ -25,9 +25,11 @@ typedef struct {
     bool stop_bits_2; // false -> 1, true -> 2
 } USART_FrameFormat_s;
 
-void HAL_USART_Init(const USART_FrameFormat_s* format);
-void HAL_USART_Transmit(uint8_t data);
-uint8_t HAL_USART_Receive(void);
+void HAL_USART_Init(const USART_FrameFormat_s* format, uint32_t baud_rate);
+void HAL_USART_TxByte(uint8_t data);
+uint8_t HAL_USART_RxByte(void);
+void HAL_USART_TxWord(uint16_t data);
+uint16_t HAL_USART_RxWord(void);
 void HAL_USART_SetMode(USART_Mode_e mode);
 
 #endif //USART_H

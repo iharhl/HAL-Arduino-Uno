@@ -3,6 +3,7 @@
 #include "gpio.h"
 #include "pwm.h"
 #include "eeprom.h"
+#include "usart.h"
 
 int main(void)
 {
@@ -14,6 +15,7 @@ int main(void)
     HAL_GPIO_ConfigurePin((GPIO_Config){GPIO_DIR_OUTPUT, GPIO_PULL_DOWN}, 13);
 
     // PWM_init(3);
+    HAL_USART_TxByte(10);
 
     while(1)
     {
