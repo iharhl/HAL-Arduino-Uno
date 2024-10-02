@@ -62,6 +62,13 @@ extern volatile uint8_t UCSR0B; // USART Control and Status Register B
 extern volatile uint8_t UCSR0C; // USART Control and Status Register C
 extern volatile uint16_t UBRR0; // USART Baud Rate Register (H and L)
 
+// I2C Registers
+extern volatile uint8_t TWBR; // TWI Bit Rate Register
+extern volatile uint8_t TWCR; // TWI Control Register
+extern volatile uint8_t TWSR; // TWI Status Register
+extern volatile uint8_t TWDR; // TWI Data Register
+extern volatile uint8_t TWAR; // TWI (Slave) Address Register
+
 
 /* ****** Registers' bits ********** */
 
@@ -193,5 +200,53 @@ extern volatile uint8_t USBS0;
 extern volatile uint8_t UCSZ01;
 extern volatile uint8_t UCSZ00;
 extern volatile uint8_t UCPOL0;
+
+// Bits of TWBR
+extern volatile uint8_t TWBR7;
+extern volatile uint8_t TWBR6;
+extern volatile uint8_t TWBR5;
+extern volatile uint8_t TWBR4;
+extern volatile uint8_t TWBR3;
+extern volatile uint8_t TWBR2;
+extern volatile uint8_t TWBR1;
+extern volatile uint8_t TWBR0;
+
+// Bits of TWCR
+extern volatile uint8_t TWINT;
+extern volatile uint8_t TWEA;
+extern volatile uint8_t TWSTA;
+extern volatile uint8_t TWSTO;
+extern volatile uint8_t TWWC;
+extern volatile uint8_t TWEN;
+extern volatile uint8_t TWIE;
+
+// Bits of TWSR
+extern volatile uint8_t TWS7;
+extern volatile uint8_t TWS6;
+extern volatile uint8_t TWS5;
+extern volatile uint8_t TWS4;
+extern volatile uint8_t TWS3;
+extern volatile uint8_t TWPS1;
+extern volatile uint8_t TWPS0;
+
+// Bits of TWDR
+extern volatile uint8_t TWD7;
+extern volatile uint8_t TWD6;
+extern volatile uint8_t TWD5;
+extern volatile uint8_t TWD4;
+extern volatile uint8_t TWD3;
+extern volatile uint8_t TWD2;
+extern volatile uint8_t TWD1;
+extern volatile uint8_t TWD0;
+
+// Bits of TWAR
+extern volatile uint8_t TWA6;
+extern volatile uint8_t TWA5;
+extern volatile uint8_t TWA4;
+extern volatile uint8_t TWA3;
+extern volatile uint8_t TWA2;
+extern volatile uint8_t TWA1;
+extern volatile uint8_t TWA0;
+extern volatile uint8_t TWGCE;
 
 #endif

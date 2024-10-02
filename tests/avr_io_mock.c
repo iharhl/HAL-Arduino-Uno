@@ -59,6 +59,13 @@ volatile uint8_t UCSR0B = 0; // USART Control and Status Register B
 volatile uint8_t UCSR0C = 0; // USART Control and Status Register C
 volatile uint16_t UBRR0 = 0; // USART Baud Rate Register (H and L)
 
+// I2C Registers
+volatile uint8_t TWBR = 0; // TWI Bit Rate Register
+volatile uint8_t TWCR = 0; // TWI Control Register
+volatile uint8_t TWSR = 0; // TWI Status Register
+volatile uint8_t TWDR = 0; // TWI Data Register
+volatile uint8_t TWAR = 0; // TWI (Slave) Address Register
+
 
 /* ****** Registers' bits ********** */
 
@@ -190,3 +197,52 @@ volatile uint8_t USBS0 = 3;
 volatile uint8_t UCSZ01 = 2;
 volatile uint8_t UCSZ00 = 1;
 volatile uint8_t UCPOL0 = 0;
+
+// Bits of TWBR
+volatile uint8_t TWBR7 = 7;
+volatile uint8_t TWBR6 = 6;
+volatile uint8_t TWBR5 = 5;
+volatile uint8_t TWBR4 = 4;
+volatile uint8_t TWBR3 = 3;
+volatile uint8_t TWBR2 = 2;
+volatile uint8_t TWBR1 = 1;
+volatile uint8_t TWBR0 = 0;
+
+// Bits of TWCR
+volatile uint8_t TWINT = 7;
+volatile uint8_t TWEA = 6;
+volatile uint8_t TWSTA = 5;
+volatile uint8_t TWSTO = 4;
+volatile uint8_t TWWC = 3;
+volatile uint8_t TWEN = 2;
+volatile uint8_t TWIE = 0;
+
+// Bits of TWSR
+volatile uint8_t TWS7 = 7;
+volatile uint8_t TWS6 = 6;
+volatile uint8_t TWS5 = 5;
+volatile uint8_t TWS4 = 4;
+volatile uint8_t TWS3 = 3;
+volatile uint8_t TWPS1 = 1;
+volatile uint8_t TWPS0 = 0;
+
+// Bits of TWDR
+volatile uint8_t TWD7 = 7;
+volatile uint8_t TWD6 = 6;
+volatile uint8_t TWD5 = 5;
+volatile uint8_t TWD4 = 4;
+volatile uint8_t TWD3 = 3;
+volatile uint8_t TWD2 = 2;
+volatile uint8_t TWD1 = 1;
+volatile uint8_t TWD0 = 0;
+
+// Bits of TWAR
+volatile uint8_t TWA6 = 7;
+volatile uint8_t TWA5 = 6;
+volatile uint8_t TWA4 = 5;
+volatile uint8_t TWA3 = 4;
+volatile uint8_t TWA2 = 3;
+volatile uint8_t TWA1 = 2;
+volatile uint8_t TWA0 = 1;
+volatile uint8_t TWGCE = 0;
+

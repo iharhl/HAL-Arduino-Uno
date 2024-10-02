@@ -12,6 +12,7 @@ int main()
     RUN_PWR_TESTS();
     RUN_EEPROM_TESTS();
     RUN_USART_TESTS();
+    RUN_I2C_TESTS();
 
     return 0;
 }

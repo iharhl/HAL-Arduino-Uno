@@ -11,7 +11,7 @@
     do                          \
     {                           \
         if (!(expression))      \
-            TRACE("FAILURE");   \
+            TRACE("RUNTIME FAILURE");   \
     } while(0)
 #else
 #define ASSERT(expression)      \
